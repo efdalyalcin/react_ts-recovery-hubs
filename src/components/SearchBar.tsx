@@ -12,7 +12,7 @@ export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQueryStore();
 
   return (
-    <header className="mb-3">
+    <header className="mb-8">
       <input
         type="search"
         className={searchBarClassName}
