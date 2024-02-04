@@ -14,7 +14,7 @@ export default function HubPlasticDetail({
   unit,
 }: hubPlasticDetailProps) {
   return (
-    <div className="grid gap-2 grid-cols-1 min-w-96">
+    <div className="col-start-1 col-end-5 row-start-2 grid gap-2 grid-cols-1 min-w-96">
       <div className={gridRowClassName}>
         <p>Amount of total recovered plastic: </p>
         <p className="font-semibold">{`${roundNumbersToOneDigit(
