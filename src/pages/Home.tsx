@@ -31,18 +31,16 @@ export default function Home() {
   if (isLoading) return <Loading />;
 
   return (
-    <>
-      <main className="mx-auto p-4 max-w-7xl min-w-80 h-svh">
-        <SearchBar />
-        <section className="flex flex-col gap-2">
-          {filteredData
-            ? filteredData?.map((hubData) => (
-                <HubItem hubData={hubData} key={hubData.uuid} />
-              ))
-            : null}
-        </section>
-      </main>
+    <main className="mx-auto p-4 pb-0 max-w-7xl min-w-80 min-h-screen flex flex-col justify-between">
+      <SearchBar />
+      <section className="flex flex-col gap-2 mb-8">
+        {filteredData
+          ? filteredData?.map((hubData) => (
+              <HubItem hubData={hubData} key={hubData.uuid} />
+            ))
+          : null}
+      </section>
       <Footer />
-    </>
+    </main>
   );
 }

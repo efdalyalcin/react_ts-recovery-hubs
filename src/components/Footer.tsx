@@ -6,8 +6,8 @@ const iconsClassName =
 
 export default function Footer() {
   return (
-    <footer className="flex justify-between max-w-screen-md mx-auto px-4 py-8">
-      <p className="text-sm text-gray-600">@Copyright - Efdal YALÇIN</p>
+    <footer className="flex justify-between max-w-screen-md mx-auto px-4 py-8 sm:w-3/5">
+      <p className="text-sm text-gray-600 mr-8">@Copyright - Efdal YALÇIN</p>
       <div className="flex gap-6">
         <a href="mailto:yalcinefdal@gmail.com" className={iconsClassName}>
           <img src={mailbox} alt="Email icon" />
