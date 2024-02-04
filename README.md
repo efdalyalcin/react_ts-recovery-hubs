@@ -5,7 +5,7 @@ This project is created by Efdal Yalcin using React, TypeScript, TailwindCSS and
 ### Installation
 
 1. Clone the repository:
-   `git clone https://github.com/your-username/react_ts-recovery-hubs.git`
+   `git clone https://github.com/efdalyalcin/react_ts-recovery-hubs.git`
 
 2. Change into the project directory:
    `cd react_ts-recovery-hubs`
