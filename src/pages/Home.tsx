@@ -6,6 +6,7 @@ import Loading from '@/components/LoadingCover';
 import SearchBar from '@/components/SearchBar';
 import { getHubs } from '@/services/getHubs';
 import useAssignablePlasticsStore from '@/store/useAssignablePlasticsStore';
+import useHubSelectionStore from '@/store/useHubSelectionStore';
 import useSearchQueryStore from '@/store/useSearchQueryStore';
 import { useMemo } from 'react';
 import { useQuery } from 'react-query';
@@ -13,6 +14,7 @@ import { useQuery } from 'react-query';
 export default function Home() {
   const { searchQuery } = useSearchQueryStore();
   const { isAssignablePlasticPresentChecked } = useAssignablePlasticsStore();
+  const { isSelectionDone, selectedHubs } = useHubSelectionStore();
 
   // this query could have been in a custom hook,
   // however for this project, it will be used for only one time so it won't make sense
@@ -29,12 +31,25 @@ export default function Home() {
       hub.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const isAssignableData = isAssignablePlasticPresentChecked
+    const isAssignablePlasticsFilteredData = isAssignablePlasticPresentChecked
       ? queryFilteredData?.filter((hub) => hub.unassignedQuantityTotal)
       : queryFilteredData;
 
-    return isAssignableData;
-  }, [data, searchQuery, isAssignablePlasticPresentChecked]);
+    const selectedHubsFilteredData =
+      isSelectionDone && selectedHubs.length > 0
+        ? isAssignablePlasticsFilteredData?.filter((hub) =>
+            selectedHubs.includes(hub.uuid)
+          )
+        : isAssignablePlasticsFilteredData;
+
+    return selectedHubsFilteredData;
+  }, [
+    data,
+    searchQuery,
+    isAssignablePlasticPresentChecked,
+    isSelectionDone,
+    selectedHubs,
+  ]);
 
   if (isError) return <ErrorPage error={error} />;
   if (isLoading) return <Loading />;

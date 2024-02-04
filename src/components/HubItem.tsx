@@ -5,24 +5,27 @@ import portfolioIcon from '@/assets/portfolio_icon.png';
 import { useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import HubImageModal from '@/components/HubImageModal';
+import useHubSelectionStore from '@/store/useHubSelectionStore';
+import cn from 'classnames';
 
 type Props = {
   hubData: HubT;
 };
 
-// unassigned quantity amount
-// const findPlasticInInventory = (data: HubT) => {
-//   return data.hubUnassignedRecoveryList[0]
-//     ? `${data.hubUnassignedRecoveryList[0].unassignedQuantity} ${data.hubUnassignedRecoveryList[0].quantityUnit}`
-//     : 'No information';
-// };
 const textClickableClassName =
   'px-4 py-1 text-cyan-800 hover:text-cyan-400 transition-colors';
 
 const smallScreenClassName =
-  'grid grid-cols-4 grid-rows-2 place-items-center gap-4 border rounded py-2 px-4';
+  'grid grid-cols-4 grid-rows-2 place-items-center gap-4 border rounded py-2 px-4 transition-colors';
+
+// this function is special for the component, and since it is not reusable I kept it here
+const findIsItemSelected = (hubId: string, selectedItems: string[]) => {
+  return selectedItems.find((item) => item === hubId);
+};
 
 export default function HubItem({ hubData }: Props) {
+  const { isSelectClicked, selectedHubs, selectHub } = useHubSelectionStore();
+
   // modal will create a rerender so I kept detail props in state also
   // the reason is, not to create the same object over and over
   const [hubPlasticDetailProps] = useState({
@@ -30,17 +33,34 @@ export default function HubItem({ hubData }: Props) {
     unassignedData: hubData.unassignedQuantityTotal,
     unit: hubData.recoveredQuantityUnit,
   });
+
   const [isPhotoModalShown, setIsPhotoModalShown] = useState(false);
+
+  // since this is passed to other components it is wrapped to useCallback to prevent unwanted renders
   const closeModal = useCallback(() => {
     setIsPhotoModalShown(false);
   }, []);
 
+  // since this is a simple function and not passed anywhere for performance reasons it is kept unwrapped
+  const handleHubSelect = () => {
+    if (isSelectClicked) return selectHub(hubData.uuid);
+
+    // if selection is not open it doesn't let you select
+    return () => {};
+  };
+
   return (
     <>
       <div
-        className={
-          smallScreenClassName + ' lg:flex lg:items-center lg:justify-between'
-        }
+        className={cn(
+          smallScreenClassName,
+          'lg:flex lg:items-center lg:justify-between',
+          {
+            'border-cyan-700': findIsItemSelected(hubData.uuid, selectedHubs),
+            'border-cyan-200 hover:border-cyan-700': isSelectClicked,
+          }
+        )}
+        onClick={handleHubSelect}
       >
         <HubLogo
           imageSrc={hubData.logo?.directLink}

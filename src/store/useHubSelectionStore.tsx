@@ -4,10 +4,11 @@ type HubSelectionStoreT = {
   isSelectClicked: boolean;
   toggleIsSelectClicked: () => void;
   selectedHubs: string[];
-  selectHubs: (hubId: string) => void;
+  selectHub: (hubId: string) => void;
   clearSelectedHubs: () => void;
   isSelectionDone: boolean;
-  toggleIsSelectionDone: () => void;
+  setIsSelectionDoneToFalse: () => void;
+  setIsSelectionDoneToTrue: () => void;
 };
 
 const useHubSelectionStore = create<HubSelectionStoreT>()((set) => ({
@@ -18,7 +19,7 @@ const useHubSelectionStore = create<HubSelectionStoreT>()((set) => ({
       isSelectClicked: !state.isSelectClicked,
     })),
   selectedHubs: [],
-  selectHubs: (hubId) =>
+  selectHub: (hubId) =>
     set((state) => ({
       ...state,
       selectedHubs: [...state.selectedHubs, hubId],
@@ -30,10 +31,15 @@ const useHubSelectionStore = create<HubSelectionStoreT>()((set) => ({
       isSelectionDone: false,
     })),
   isSelectionDone: false,
-  toggleIsSelectionDone: () =>
+  setIsSelectionDoneToFalse: () =>
     set((state) => ({
       ...state,
-      isSelectionDone: !state.isSelectionDone,
+      isSelectionDone: false,
+    })),
+  setIsSelectionDoneToTrue: () =>
+    set((state) => ({
+      ...state,
+      isSelectionDone: true,
     })),
 }));
 

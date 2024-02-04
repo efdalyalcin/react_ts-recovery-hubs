@@ -1,4 +1,5 @@
 import useAssignablePlasticsStore from '@/store/useAssignablePlasticsStore';
+import SelectHubs from './SelectHubs';
 
 export default function FilterBar() {
   const {
@@ -27,7 +28,7 @@ export default function FilterBar() {
           onChange={toggleIsAssignablePlasticPresent}
         />
       </div>
-      <div>Select the hubs you want to see</div>
+      <SelectHubs />
     </div>
   );
 }
