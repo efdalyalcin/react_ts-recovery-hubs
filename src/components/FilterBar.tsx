@@ -8,7 +8,7 @@ export default function FilterBar() {
   } = useAssignablePlasticsStore();
 
   return (
-    <div className="mb-8 flex justify-around">
+    <div className="flex flex-col sm:flex-row justify-around items-center gap-3 ">
       <div className="flex gap-4 items-center">
         <label
           htmlFor="plasticAssign"

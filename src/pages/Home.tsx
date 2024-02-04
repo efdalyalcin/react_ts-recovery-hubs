@@ -1,9 +1,8 @@
 import ErrorPage from '@/components/ErrorCover';
-import FilterBar from '@/components/FilterBar';
 import Footer from '@/components/Footer';
 import HubItem from '@/components/HubItem';
 import Loading from '@/components/LoadingCover';
-import SearchBar from '@/components/SearchBar';
+import Header from '@/components/Header';
 import { getHubs } from '@/services/getHubs';
 import useAssignablePlasticsStore from '@/store/useAssignablePlasticsStore';
 import useHubSelectionStore from '@/store/useHubSelectionStore';
@@ -31,10 +30,12 @@ export default function Home() {
       hub.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    // if checkmark checked this filters otherwise returns same data
     const isAssignablePlasticsFilteredData = isAssignablePlasticPresentChecked
       ? queryFilteredData?.filter((hub) => hub.unassignedQuantityTotal)
       : queryFilteredData;
 
+    // if hubs are selected and the selection is done this part filters, otherwise returns same array
     const selectedHubsFilteredData =
       isSelectionDone && selectedHubs.length > 0
         ? isAssignablePlasticsFilteredData?.filter((hub) =>
@@ -56,8 +57,7 @@ export default function Home() {
 
   return (
     <main className="mx-auto p-4 pb-0 max-w-7xl min-w-80 min-h-screen flex flex-col justify-between">
-      <SearchBar />
-      <FilterBar />
+      <Header />
       <section className="flex flex-col gap-2 mb-8">
         {filteredData
           ? filteredData?.map((hubData) => (

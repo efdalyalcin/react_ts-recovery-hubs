@@ -1,4 +1,5 @@
 import useSearchQueryStore from '@/store/useSearchQueryStore';
+import FilterBar from './FilterBar';
 
 const searchBarClassName =
   'relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 ' +
@@ -6,7 +7,7 @@ const searchBarClassName =
   'text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] ' +
   'focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] ' +
   'focus:outline-none dark:border-neutral-600 dark:text-neutral-400 dark:placeholder:text-neutral-400 ' +
-  'dark:focus:border-primary';
+  'dark:focus:border-primary mb-4';
 
 export default function SearchBar() {
   const { searchQuery, setSearchQuery } = useSearchQueryStore();
@@ -20,6 +21,7 @@ export default function SearchBar() {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
+      <FilterBar />
     </header>
   );
 }
