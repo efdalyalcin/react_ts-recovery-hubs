@@ -88,7 +88,10 @@ export default function HubItem({ hubData }: Props) {
         <div>
           <button
             type="button"
-            onClick={() => setIsPhotoModalShown(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsPhotoModalShown(true);
+            }}
             className={textClickableClassName}
           >
             Images

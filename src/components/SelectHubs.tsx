@@ -1,6 +1,7 @@
 import useHubSelectionStore from '@/store/useHubSelectionStore';
+import cn from 'classnames';
 
-const buttonClassName = 'w-60';
+const buttonClassName = 'w-60 rounded transition-colors text-slate-200';
 
 export default function SelectHubs() {
   const {
@@ -20,7 +21,7 @@ export default function SelectHubs() {
             setIsSelectionDoneToTrue();
             toggleIsSelectClicked();
           }}
-          className={buttonClassName}
+          className={cn(buttonClassName, 'bg-green-700 ')}
         >
           DONE
         </button>
@@ -32,7 +33,7 @@ export default function SelectHubs() {
             setIsSelectionDoneToFalse();
             clearSelectedHubs();
           }}
-          className={buttonClassName}
+          className={cn(buttonClassName, 'bg-slate-400 hover:bg-slate-700')}
         >
           Select the hubs you want to see
         </button>
