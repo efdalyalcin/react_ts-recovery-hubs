@@ -15,5 +15,9 @@ export default function Home() {
   if (isError) return <ErrorPage error={error} />;
   if (isLoading) return <Loading />;
 
-  return <main className="mx-auto p-4 max-w-7xl min-w-80"></main>;
+  return (
+    <main className="mx-auto p-4 max-w-7xl min-w-80">
+      <SearchBar />
+    </main>
+  );
 }
