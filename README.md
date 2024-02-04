@@ -18,3 +18,5 @@ This project is created by Efdal Yalcin using React, TypeScript, TailwindCSS and
 
 5. Run basic tests:
    `npm run test`
+
+Note: I left comments as much as possible to show my thinking process and make the code more understandable. Most of the comments would not be in production code.
