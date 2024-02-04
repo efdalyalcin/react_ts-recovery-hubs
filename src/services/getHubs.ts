@@ -10,7 +10,14 @@ export const getHubs = () => {
           return res.json();
         }
       })
-      .then((res) => resolve(res))
+      .then((res) => {
+        // Check if the data is an array and has at least one valid item
+        if (Array.isArray(res) && res.length > 0) {
+          resolve(res);
+        } else {
+          resolve([]);
+        }
+      })
       .catch((error) => reject(error));
   });
 };
