@@ -1,11 +1,14 @@
-import useAssignablePlasticsStore from '@/store/useAssignablePlasticsStore';
 import SelectHubs from './SelectHubs';
+import useAssignablePlasticsAndGroupStore, {
+  GroupByFilterT,
+} from '@/store/useAssignablePlasticsAndGroupStore';
 
 export default function FilterBar() {
   const {
     isAssignablePlasticPresentChecked,
     toggleIsAssignablePlasticPresent,
-  } = useAssignablePlasticsStore();
+    setGroupByFilterSelected,
+  } = useAssignablePlasticsAndGroupStore();
 
   return (
     <div className="flex flex-col sm:flex-row justify-around items-center gap-3 ">
@@ -29,6 +32,15 @@ export default function FilterBar() {
         />
       </div>
       <SelectHubs />
+      <select
+        onChange={(e) =>
+          setGroupByFilterSelected(e.target.value as GroupByFilterT)
+        }
+      >
+        <option value="none">None</option>
+        <option value="stage">Stage</option>
+        <option value="state">State</option>
+      </select>
     </div>
   );
 }

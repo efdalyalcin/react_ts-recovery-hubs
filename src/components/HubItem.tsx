@@ -46,7 +46,7 @@ export default function HubItem({ hubData }: Props) {
     if (isSelectClicked) return selectHub(hubData.uuid);
 
     // if selection is not open it doesn't let you select
-    return () => {};
+    // return () => {};
   };
 
   return (
