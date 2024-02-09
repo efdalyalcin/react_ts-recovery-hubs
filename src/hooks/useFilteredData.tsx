@@ -59,7 +59,6 @@ export default function useFilteredData() {
         ];
       });
 
-      console.log('grouped', groupedData);
       return groupedData;
     }
 
@@ -72,9 +71,10 @@ export default function useFilteredData() {
         ];
       });
 
-      console.log('grouped', groupedData);
       return groupedData;
     }
+
+    return {};
   }, [filteredData, groupByFilterSelected]);
 
   return {
